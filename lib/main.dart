@@ -41,6 +41,14 @@ class _RegistrationFormState extends State<RegistrationForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  void _submitForm() {
+    if (_formKey.currentState.validate()) {
+      // If the form passes validation, display a Snackbar.
+      Scaffold.of(context)
+          .showSnackBar(SnackBar(content: Text('Registration sent')));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,11 +120,17 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 validator: (String value) {
                   return null;
                 },
-                onFieldSubmitted: (String value) {},
+                onFieldSubmitted: (String value) {
+                  _submitForm();
+                },
                 decoration: InputDecoration(
                     hintText: 'Enter your password',
                     labelText: 'Password',
                     suffixIcon: Icon(Icons.visibility_off_outlined)),
+              ),
+              ElevatedButton(
+                onPressed: _submitForm,
+                child: Text('Register'),
               ),
             ],
           ),
