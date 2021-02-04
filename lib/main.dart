@@ -14,15 +14,18 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: RegistrationForm(title: 'User Registration'),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('User Registration'),
+        ),
+        body: RegistrationForm(),
+      ),
     );
   }
 }
 
 class RegistrationForm extends StatefulWidget {
-  RegistrationForm({Key key, this.title}) : super(key: key);
-
-  final String title;
+  RegistrationForm({Key key}) : super(key: key);
 
   @override
   _RegistrationFormState createState() => _RegistrationFormState();
@@ -51,89 +54,84 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              TextFormField(
-                focusNode: _nameFocusNode,
-                controller: _nameController,
-                keyboardType: TextInputType.name,
-                textInputAction: TextInputAction.next,
-                validator: (String value) {
-                  return null;
-                },
-                onFieldSubmitted: (String value) {
-                  FocusScope.of(context).requestFocus(_phoneFocusNode);
-                },
-                decoration: InputDecoration(
-                  hintText: 'Enter your full name',
-                  labelText: 'Full Name',
-                ),
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: Form(
+        key: _formKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            TextFormField(
+              focusNode: _nameFocusNode,
+              controller: _nameController,
+              keyboardType: TextInputType.name,
+              textInputAction: TextInputAction.next,
+              validator: (String value) {
+                return null;
+              },
+              onFieldSubmitted: (String value) {
+                FocusScope.of(context).requestFocus(_phoneFocusNode);
+              },
+              decoration: InputDecoration(
+                hintText: 'Enter your full name',
+                labelText: 'Full Name',
               ),
-              TextFormField(
-                focusNode: _phoneFocusNode,
-                controller: _phoneController,
-                keyboardType: TextInputType.phone,
-                textInputAction: TextInputAction.next,
-                validator: (String value) {
-                  return null;
-                },
-                onFieldSubmitted: (String value) {
-                  FocusScope.of(context).requestFocus(_emailFocusNode);
-                },
-                decoration: InputDecoration(
-                  hintText: 'Enter your phone number',
-                  labelText: 'Phone Number',
-                ),
+            ),
+            TextFormField(
+              focusNode: _phoneFocusNode,
+              controller: _phoneController,
+              keyboardType: TextInputType.phone,
+              textInputAction: TextInputAction.next,
+              validator: (String value) {
+                return null;
+              },
+              onFieldSubmitted: (String value) {
+                FocusScope.of(context).requestFocus(_emailFocusNode);
+              },
+              decoration: InputDecoration(
+                hintText: 'Enter your phone number',
+                labelText: 'Phone Number',
               ),
-              TextFormField(
-                focusNode: _emailFocusNode,
-                controller: _emailController,
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-                validator: (String value) {
-                  return null;
-                },
-                onFieldSubmitted: (String value) {
-                  FocusScope.of(context).requestFocus(_passwordFocusNode);
-                },
-                decoration: InputDecoration(
-                  hintText: 'Enter your email address',
-                  labelText: 'Email Address',
-                ),
+            ),
+            TextFormField(
+              focusNode: _emailFocusNode,
+              controller: _emailController,
+              keyboardType: TextInputType.emailAddress,
+              textInputAction: TextInputAction.next,
+              validator: (String value) {
+                return null;
+              },
+              onFieldSubmitted: (String value) {
+                FocusScope.of(context).requestFocus(_passwordFocusNode);
+              },
+              decoration: InputDecoration(
+                hintText: 'Enter your email address',
+                labelText: 'Email Address',
               ),
-              TextFormField(
-                focusNode: _passwordFocusNode,
-                controller: _passwordController,
-                keyboardType: TextInputType.text,
-                textInputAction: TextInputAction.done,
-                obscureText: true,
-                validator: (String value) {
-                  return null;
-                },
-                onFieldSubmitted: (String value) {
-                  _submitForm();
-                },
-                decoration: InputDecoration(
-                    hintText: 'Enter your password',
-                    labelText: 'Password',
-                    suffixIcon: Icon(Icons.visibility_off_outlined)),
-              ),
-              ElevatedButton(
-                onPressed: _submitForm,
-                child: Text('Register'),
-              ),
-            ],
-          ),
+            ),
+            TextFormField(
+              focusNode: _passwordFocusNode,
+              controller: _passwordController,
+              keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.done,
+              obscureText: true,
+              validator: (String value) {
+                return null;
+              },
+              onFieldSubmitted: (String value) {
+                _submitForm();
+              },
+              decoration: InputDecoration(
+                  hintText: 'Enter your password',
+                  labelText: 'Password',
+                  suffixIcon: Icon(Icons.visibility_off_outlined)),
+            ),
+            ElevatedButton(
+              onPressed: _submitForm,
+              child: Text('Register'),
+            ),
+          ],
         ),
       ),
     );
