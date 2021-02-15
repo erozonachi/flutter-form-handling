@@ -48,7 +48,10 @@ class _RegistrationFormState extends State<RegistrationForm> {
     if (_formKey.currentState.validate()) {
       // If the form passes validation, display a Snackbar.
       Scaffold.of(context)
-          .showSnackBar(SnackBar(content: Text('Registration sent')));
+        .showSnackBar(SnackBar(content: Text('Registration sent')));
+      //_formKey.currentState.save();
+      //_formKey.currentState.reset();
+      //_nextFocus(_nameFocusNode);
     }
   }
 
