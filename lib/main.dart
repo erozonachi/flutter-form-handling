@@ -52,6 +52,13 @@ class _RegistrationFormState extends State<RegistrationForm> {
     }
   }
 
+  String _validateInput(String value) {
+    if(value.trim().isEmpty) {
+      return 'Field required';
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -67,9 +74,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               controller: _nameController,
               keyboardType: TextInputType.name,
               textInputAction: TextInputAction.next,
-              validator: (String value) {
-                return null;
-              },
+              validator: _validateInput,
               onFieldSubmitted: (String value) {
                 FocusScope.of(context).requestFocus(_phoneFocusNode);
               },
@@ -83,9 +88,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               controller: _phoneController,
               keyboardType: TextInputType.phone,
               textInputAction: TextInputAction.next,
-              validator: (String value) {
-                return null;
-              },
+              validator: _validateInput,
               onFieldSubmitted: (String value) {
                 FocusScope.of(context).requestFocus(_emailFocusNode);
               },
@@ -99,9 +102,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
-              validator: (String value) {
-                return null;
-              },
+              validator: _validateInput,
               onFieldSubmitted: (String value) {
                 FocusScope.of(context).requestFocus(_passwordFocusNode);
               },
@@ -116,9 +117,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.done,
               obscureText: true,
-              validator: (String value) {
-                return null;
-              },
+              validator: _validateInput,
               onFieldSubmitted: (String value) {
                 _submitForm();
               },
