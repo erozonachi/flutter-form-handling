@@ -44,7 +44,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void _submitForm() {
+  _submitForm() {
     if (_formKey.currentState.validate()) {
       // If the form passes validation, display a Snackbar.
       Scaffold.of(context)
@@ -57,6 +57,10 @@ class _RegistrationFormState extends State<RegistrationForm> {
       return 'Field required';
     }
     return null;
+  }
+
+  _nextFocus(FocusNode focusNode) {
+    FocusScope.of(context).requestFocus(focusNode);
   }
 
   @override
@@ -76,7 +80,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               textInputAction: TextInputAction.next,
               validator: _validateInput,
               onFieldSubmitted: (String value) {
-                FocusScope.of(context).requestFocus(_phoneFocusNode);
+                _nextFocus(_phoneFocusNode);
               },
               decoration: InputDecoration(
                 hintText: 'Enter your full name',
@@ -90,7 +94,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               textInputAction: TextInputAction.next,
               validator: _validateInput,
               onFieldSubmitted: (String value) {
-                FocusScope.of(context).requestFocus(_emailFocusNode);
+                _nextFocus(_emailFocusNode);
               },
               decoration: InputDecoration(
                 hintText: 'Enter your phone number',
@@ -104,7 +108,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               textInputAction: TextInputAction.next,
               validator: _validateInput,
               onFieldSubmitted: (String value) {
-                FocusScope.of(context).requestFocus(_passwordFocusNode);
+                _nextFocus(_passwordFocusNode);
               },
               decoration: InputDecoration(
                 hintText: 'Enter your email address',
