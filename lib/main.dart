@@ -46,6 +46,14 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
   _submitForm() {
     if (_formKey.currentState.validate()) {
+      final user = {
+        'name': _nameController.text,
+        'phone': _phoneController.text,
+        'email': _emailController,
+        'password': _passwordController
+      };
+      print(user.toString());
+      
       // If the form passes validation, display a Snackbar.
       Scaffold.of(context)
         .showSnackBar(SnackBar(content: Text('Registration sent')));
