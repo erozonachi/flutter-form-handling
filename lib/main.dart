@@ -49,8 +49,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
       final user = {
         'name': _nameController.text,
         'phone': _phoneController.text,
-        'email': _emailController,
-        'password': _passwordController
+        'email': _emailController.text,
+        'password': _passwordController.text,
       };
       print(user.toString());
       
@@ -79,73 +79,89 @@ class _RegistrationFormState extends State<RegistrationForm> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      child: Form(
-        key: _formKey,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextFormField(
-              focusNode: _nameFocusNode,
-              controller: _nameController,
-              keyboardType: TextInputType.name,
-              textInputAction: TextInputAction.next,
-              validator: _validateInput,
-              onFieldSubmitted: (String value) {
-                _nextFocus(_phoneFocusNode);
-              },
-              decoration: InputDecoration(
-                hintText: 'Enter your full name',
-                labelText: 'Full Name',
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: 16,
+        ),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextFormField(
+                focusNode: _nameFocusNode,
+                controller: _nameController,
+                keyboardType: TextInputType.name,
+                textInputAction: TextInputAction.next,
+                validator: _validateInput,
+                onFieldSubmitted: (String value) {
+                  _nextFocus(_phoneFocusNode);
+                },
+                decoration: InputDecoration(
+                  hintText: 'Enter your full name',
+                  labelText: 'Full Name',
+                ),
               ),
-            ),
-            TextFormField(
-              focusNode: _phoneFocusNode,
-              controller: _phoneController,
-              keyboardType: TextInputType.phone,
-              textInputAction: TextInputAction.next,
-              validator: _validateInput,
-              onFieldSubmitted: (String value) {
-                _nextFocus(_emailFocusNode);
-              },
-              decoration: InputDecoration(
-                hintText: 'Enter your phone number',
-                labelText: 'Phone Number',
+              TextFormField(
+                focusNode: _phoneFocusNode,
+                controller: _phoneController,
+                keyboardType: TextInputType.phone,
+                textInputAction: TextInputAction.next,
+                validator: _validateInput,
+                onFieldSubmitted: (String value) {
+                  _nextFocus(_emailFocusNode);
+                },
+                decoration: InputDecoration(
+                  hintText: 'Enter your phone number',
+                  labelText: 'Phone Number',
+                ),
               ),
-            ),
-            TextFormField(
-              focusNode: _emailFocusNode,
-              controller: _emailController,
-              keyboardType: TextInputType.emailAddress,
-              textInputAction: TextInputAction.next,
-              validator: _validateInput,
-              onFieldSubmitted: (String value) {
-                _nextFocus(_passwordFocusNode);
-              },
-              decoration: InputDecoration(
-                hintText: 'Enter your email address',
-                labelText: 'Email Address',
+              TextFormField(
+                focusNode: _emailFocusNode,
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                textInputAction: TextInputAction.next,
+                validator: _validateInput,
+                onFieldSubmitted: (String value) {
+                  _nextFocus(_passwordFocusNode);
+                },
+                decoration: InputDecoration(
+                  hintText: 'Enter your email address',
+                  labelText: 'Email Address',
+                ),
               ),
-            ),
-            TextFormField(
-              focusNode: _passwordFocusNode,
-              controller: _passwordController,
-              keyboardType: TextInputType.text,
-              textInputAction: TextInputAction.done,
-              obscureText: true,
-              validator: _validateInput,
-              onFieldSubmitted: (String value) {
-                _submitForm();
-              },
-              decoration: InputDecoration(
-                  hintText: 'Enter your password',
-                  labelText: 'Password',
-                  suffixIcon: Icon(Icons.visibility_off_outlined)),
-            ),
-            ElevatedButton(
-              onPressed: _submitForm,
-              child: Text('Register'),
-            ),
-          ],
+              TextFormField(
+                focusNode: _passwordFocusNode,
+                controller: _passwordController,
+                keyboardType: TextInputType.text,
+                textInputAction: TextInputAction.done,
+                obscureText: true,
+                validator: _validateInput,
+                onFieldSubmitted: (String value) {
+                  _submitForm();
+                },
+                decoration: InputDecoration(
+                    hintText: 'Enter your password',
+                    labelText: 'Password',
+                    suffixIcon: Icon(Icons.visibility_off_outlined)),
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: 16,
+                      ),
+                      child: ElevatedButton(
+                        onPressed: _submitForm,
+                        child: Text('Register'),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
